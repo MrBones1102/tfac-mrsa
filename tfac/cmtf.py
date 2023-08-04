@@ -3,6 +3,7 @@ Coupled Matrix Tensor Factorization
 """
 
 import numpy as np
+from statsmodels.multivariate.pca import PCA
 import tensorly as tl
 from tensorly.tenalg import khatri_rao, svd_interface
 from tqdm import tqdm
@@ -18,7 +19,7 @@ from tensorpack.cmtf import (
 tl.set_backend("numpy")
 
 
-def perform_CMTF(tOrig, mOrig, r=9, tol=1e-6, maxiter=100, progress=True):
+def perform_CMTF(tOrig, mOrig, r=8, tol=1e-6, maxiter=1000, progress=True):
     """Perform CMTF decomposition."""
     assert tOrig.dtype == float
     assert mOrig.dtype == float
@@ -77,3 +78,26 @@ def perform_CMTF(tOrig, mOrig, r=9, tol=1e-6, maxiter=100, progress=True):
     tFac.R2X = R2X
 
     return tFac
+
+
+def perform_pca(tensor, rna, r=8):
+    """
+    Returns PCA factors.
+
+    Parameters:
+        tensor (tl.CPTensor): cytokine data, in tensor form
+        rna (np.array): RNA-seq matrix
+        r (int, default:8): PCA components to use
+
+    Returns:
+        components (numpy.array): PCA components
+        var_explained (float): variance explained by PCA
+    """
+    unfolded_tensor = tl.unfold(tensor, 0)
+    stacked = np.hstack((unfolded_tensor, rna))
+
+    pca = PCA(stacked, ncomp=r, missing='fill-em', method='nipals')
+    components = pca.factors / abs(pca.factors).max(axis=0)
+    var_explained = pca.rsquare[-1]
+
+    return components, var_explained

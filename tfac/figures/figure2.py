@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 
 from .common import getSetup
-from ..dataImport import form_tensor, get_factors, get_pca_factors
+from ..cmtf import perform_CMTF, perform_pca
+from ..dataImport import form_tensor
 from ..predict import run_model
 from tensorpack import calcR2X
 
@@ -25,22 +26,26 @@ def get_r2x_results():
     # R2X v. Components
     tensor, matrix, patient_data = form_tensor()
     labels = patient_data.loc[:, 'status']
-    components = 12
+    components = 10
 
     r2x_v_components = pd.DataFrame(
         columns=['CMTF', 'PCA'],
-        index=np.arange(2, components + 1),
+        index=np.arange(1, components + 1),
         dtype=float
     )
     acc_v_components = pd.DataFrame(
         columns=['CMTF', 'PCA'],
-        index=np.arange(2, components + 1).tolist(),
+        index=np.arange(1, components + 1).tolist(),
         dtype=float
     )
     for n_components in r2x_v_components.index:
         print(f"Starting decomposition with {n_components} components.")
-        t_fac, _ = get_factors(r=n_components)
-        pca_components, _, pca_var = get_pca_factors(r=n_components)
+        t_fac = perform_CMTF(tensor, matrix, r=n_components)
+        pca_components, pca_var = perform_pca(
+            tensor,
+            matrix,
+            r=n_components
+        )
         r2x_v_components.loc[n_components, 'CMTF'] = t_fac.R2X
         r2x_v_components.loc[n_components, 'PCA'] = pca_var
         acc_v_components.loc[n_components, 'CMTF'] = \
@@ -61,8 +66,8 @@ def get_r2x_results():
     )
     for scaling in r2x_v_scaling.index:
         tensor, matrix, _ = form_tensor(scaling)
-        t_fac, _ = get_factors(variance_scaling=scaling)
-        pca_components, _, _ = get_pca_factors(r=n_components)
+        t_fac = perform_CMTF(tensor, matrix)
+        pca_components, _ = perform_pca(tensor, matrix)
         r2x_v_scaling.loc[scaling, "Total"] = t_fac.R2X
         r2x_v_scaling.loc[scaling, "Tensor"] = calcR2X(t_fac, tIn=tensor)
         r2x_v_scaling.loc[scaling, "Matrix"] = calcR2X(t_fac, mIn=matrix)
