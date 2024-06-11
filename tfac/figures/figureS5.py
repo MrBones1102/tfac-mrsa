@@ -6,9 +6,9 @@ import numpy as np
 from os.path import abspath, dirname
 import pandas as pd
 
-from .common import getSetup
-from ..dataImport import import_validation_patient_metadata, get_factors, import_cytokines, import_rna
-from ..predict import get_accuracy, predict_known, predict_validation, predict_regression
+from tfac.figures.common import getSetup
+from tfac.dataImport import import_validation_patient_metadata, get_factors, import_cytokines, import_rna
+from tfac.predict import get_accuracy, predict_known, predict_validation, predict_regression
 
 COLOR_CYCLE = matplotlib.rcParams['axes.prop_cycle'].by_key()['color'][2:]
 PATH_HERE = dirname(dirname(abspath(__file__)))

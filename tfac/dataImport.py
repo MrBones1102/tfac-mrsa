@@ -7,7 +7,7 @@ import pandas as pd
 import scipy.cluster.hierarchy as sch
 from sklearn.preprocessing import scale
 
-from .cmtf import perform_CMTF
+from tfac.cmtf import perform_CMTF
 
 PATH_HERE = dirname(dirname(abspath(__file__)))
 OPTIMAL_SCALING = 2 ** 7.0

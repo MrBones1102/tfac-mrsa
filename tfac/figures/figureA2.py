@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from .common import getSetup
-from ..dataImport import get_factors, import_rna, reorder_table
+from tfac.figures.common import getSetup
+from tfac.dataImport import get_factors, import_rna, reorder_table
 
 plt.rcParams["svg.fonttype"] = "none"
 

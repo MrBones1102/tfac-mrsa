@@ -4,10 +4,11 @@ Creates Figure 2 -- CMTF Plotting
 import numpy as np
 import pandas as pd
 
-from .common import getSetup
-from ..dataImport import form_tensor, get_factors
-from ..predict import run_model
-from ..cmtf import calcR2X, PCArand
+
+from tfac.figures.common import getSetup
+from tfac.dataImport import form_tensor, get_factors
+from tfac.predict import run_model
+from tfac.cmtf import calcR2X, PCArand
 
 
 def get_r2x_results():

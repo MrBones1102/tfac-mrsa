@@ -5,8 +5,8 @@ import matplotlib
 from matplotlib.patches import Patch
 import numpy as np
 
-from .common import getSetup
-from ..dataImport import import_cytokines
+from tfac.figures.common import getSetup
+from tfac.dataImport import import_cytokines
 
 COLOR_CYCLE = matplotlib.rcParams['axes.prop_cycle'].by_key()['color']
 

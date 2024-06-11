@@ -9,7 +9,7 @@ from sklearn.model_selection import cross_val_predict, cross_val_score, \
     RepeatedStratifiedKFold, StratifiedKFold
 from sklearn.svm import SVC
 
-from .dataImport import import_validation_patient_metadata
+from tfac.dataImport import import_validation_patient_metadata
 
 warnings.filterwarnings('ignore', category=UserWarning)
 
@@ -95,6 +95,7 @@ def predict_known(data, labels, method='predict', svc=False):
     if svc:
         _, model = run_svc(data, labels)
     else:
+        
         _, model = run_model(data, labels)
 
     if isinstance(data, pd.Series):

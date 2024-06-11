@@ -9,10 +9,10 @@ from os.path import abspath, dirname
 import pandas as pd
 from sklearn.metrics import roc_curve
 
-from .common import getSetup
-from ..dataImport import import_validation_patient_metadata, get_factors, \
+from tfac.figures.common import getSetup
+from tfac.dataImport import import_validation_patient_metadata, get_factors, \
     import_cytokines, import_rna
-from ..predict import get_accuracy, predict_known
+from tfac.predict import get_accuracy, predict_known
 
 COLOR_CYCLE = matplotlib.rcParams['axes.prop_cycle'].by_key()['color']
 PATH_HERE = dirname(dirname(abspath(__file__)))

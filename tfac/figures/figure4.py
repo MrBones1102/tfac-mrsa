@@ -11,10 +11,10 @@ import seaborn as sns
 from sklearn.preprocessing import scale
 from sklearn.utils import resample
 
-from .common import getSetup
-from ..dataImport import form_tensor, import_cytokines, get_factors, \
+from tfac.figures.common import getSetup
+from tfac.dataImport import form_tensor, import_cytokines, get_factors, \
     reorder_table
-from ..predict import run_model, predict_regression
+from tfac.predict import run_model, predict_regression
 
 N_BOOTSTRAP = 30
 PATH_HERE = dirname(dirname(abspath(__file__)))

@@ -4,7 +4,7 @@ Test that we can successfully import the datasets.
 import pytest
 import numpy as np
 import pandas as pd
-from ..dataImport import import_patient_metadata, form_tensor, import_rna
+from tfac.dataImport import import_patient_metadata, form_tensor, import_rna
 
 
 @pytest.mark.parametrize("call", [import_patient_metadata, import_rna])

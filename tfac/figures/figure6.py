@@ -3,9 +3,9 @@ import re
 import numpy as np
 import pandas as pd
 
-from .common import getSetup
-from ..dataImport import get_factors
-from ..predict import predict_known
+from tfac.figures.common import getSetup
+from tfac.dataImport import get_factors
+from tfac.predict import predict_known
 
 
 def makeFigure():

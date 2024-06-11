@@ -7,8 +7,8 @@ import pandas as pd
 from scipy.stats import pearsonr
 import seaborn as sns
 
-from .common import getSetup
-from ..dataImport import form_tensor, import_cytokines
+from tfac.figures.common import getSetup
+from tfac.dataImport import form_tensor, import_cytokines
 
 
 def adjust_box_widths(g, fac):

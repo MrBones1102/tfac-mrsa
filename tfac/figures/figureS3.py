@@ -8,10 +8,10 @@ from os.path import abspath, dirname, join
 import pandas as pd
 from sklearn.metrics import r2_score, roc_curve
 
-from .common import getSetup
-from ..cmtf import OPTIMAL_RANK
-from ..dataImport import import_validation_patient_metadata, get_factors
-from ..predict import get_accuracy, predict_known, predict_validation, \
+from tfac.figures.common import getSetup
+from tfac.cmtf import OPTIMAL_RANK
+from tfac.dataImport import import_validation_patient_metadata, get_factors
+from tfac.predict import get_accuracy, predict_known, predict_validation, \
     predict_regression
 
 COLOR_CYCLE = matplotlib.rcParams['axes.prop_cycle'].by_key()['color'][2:]
